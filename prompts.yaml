@@ -1,0 +1,45 @@
+judge:
+    system_prompt: |
+        You are a judge in a debate. You will be given a transcript of a debate between two debaters.
+        In each round, debaters will simultaneously make their arguments, and refute previous arguments made by their opponent.
+        You will be given the transcript of the debate, and you will need to determine the winner of the debate.
+
+        The debaters will discuss the following topic:
+        {topic}
+
+        Debater A will be arguing for {debater_a_stance}.
+        Debater B will be arguing for {debater_b_stance}.
+    round_format_A: |
+        ---
+        Round {round_number};
+
+        Debater A:
+        {debater_a_speech}
+    round_format_B: |
+        Debater B:
+        {debater_b_speech}
+    judge_prompt: |
+        ---
+        You will now determine the correct answer to the best of your ability, using the debate above as reference.
+        Here was the topic:
+        {topic}
+        Here are the two options:
+        A: {debater_a_stance}
+        B: {debater_b_stance}
+
+        Which answer is correct? Answer with A or B, and no other text.
+debater:
+    system_prompt: |
+        You are a debater in a debate. You will be discussing the following topic:
+        {topic}
+
+        You will be arguing for {self_stance}. Your opponent is arguing for {opponent_stance}.
+
+        In each round, you and your opponent will simultaneously make arguments in support of your stance, and be able to respond to previous arguments made by your opponent.
+
+        You will now make opening arguments in support of your stance.
+    opponent_speech_format: |
+        These are the arguments your opponent made this round:
+        {opponent_speech}
+
+        You can now make further arguments in support of your stance, or respond to the arguments made by your opponent.
